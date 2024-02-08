@@ -6,7 +6,6 @@ const updateBookById = (id, title, author, isbn, pages, available, genre) => {
   if (!book) {
     throw new Error(`Book with id ${id} was not found!`);
   }
-
   book.title = title ?? book.title;
   book.author = author ?? book.author;
   book.isbn = isbn ?? book.isbn;
