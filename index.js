@@ -2,6 +2,7 @@ import express from 'express'
 import getBooks from './services/books/getBooks.js'
 import getBookById from './services/books/getBookById.js'
 import createBook from './services/books/createBook.js'
+import updateBookById from './services/books/updateBookById.js'
 
 
 const app = express();
@@ -49,6 +50,18 @@ app.get('/books/:id', (req, res) => {
       res.status(500).send('Something went wrong while creating new book!')
     }
   });
+  // put method
+  app.put('/books/:id', (req, res) => {
+    try {
+      const { id } = req.params
+      const { title, author, isbn, pages, available, genre } = req.body
+      const updatedBook = updateBookById(id, title, author, isbn, pages, available,     genre)
+      res.status(200).json(updatedBook)
+    } catch (error) {
+      console.error(error)
+      res.status(500).send('Something went wrong while updating book by id!')
+    }
+  })
 
 app.listen(3000, () => {
   console.log('Server is listening on port 3000')
