@@ -1,5 +1,6 @@
 import bookData from '../../data/books.json' assert { type: 'json' };
 
+
 const deleteBook = (id) => {
   const index = bookData.books.findIndex((book) => book.id === id);
 
